@@ -16,15 +16,14 @@ class _LiveFeedState extends State<LiveFeed> {
   List<dynamic> _recognitions;
   int _imageHeight = 0;
   int _imageWidth = 0;
-  initCameras() async {
-
-  }
+  initCameras() async {}
   loadTfModel() async {
     await Tflite.loadModel(
       model: "assets/models/ssd_mobilenet.tflite",
       labels: "assets/models/labels.txt",
     );
   }
+
   /* 
   The set recognitions function assigns the values of recognitions, imageHeight and width to the variables defined here as callback
   */
@@ -37,7 +36,7 @@ class _LiveFeedState extends State<LiveFeed> {
   }
 
   @override
-  void initState() { 
+  void initState() {
     super.initState();
     loadTfModel();
   }
