@@ -65,7 +65,7 @@ class _StaticImageState extends State<StaticImage> {
     if (_imageWidth == null || _imageHeight == null) return [];
 
     double factorX = screen.width;
-    double factorY = _imageHeight / _imageHeight * screen.width;
+    double factorY = _imageHeight / _imageWidth * screen.width;
 
     Color blue = Colors.blue;
 
