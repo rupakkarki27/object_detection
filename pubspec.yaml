@@ -29,7 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.3
   image_picker: ^0.6.7
-  tflite:
+  tflite: 1.1.1
   camera: ^0.5.8+7
 
 dev_dependencies:
