@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:object_detection/realtime/live_camera.dart';
 import 'package:object_detection/static%20image/static.dart';
 
-List<CameraDescription> cameras;
+List<CameraDescription> cameras = [];
 
 Future<void> main() async {
   // initialize the cameras when the app starts

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:object_detection/realtime/bounding_box.dart';
 import 'package:object_detection/realtime/camera.dart';
 import 'dart:math' as math;
-import 'package:tflite/tflite.dart';
+import 'package:flutter_tflite/flutter_tflite.dart';
 
 class LiveFeed extends StatefulWidget {
   final List<CameraDescription> cameras;
@@ -13,7 +13,7 @@ class LiveFeed extends StatefulWidget {
 }
 
 class _LiveFeedState extends State<LiveFeed> {
-  List<dynamic> _recognitions;
+  List<dynamic>? _recognitions;
   int _imageHeight = 0;
   int _imageWidth = 0;
   initCameras() async {
@@ -53,7 +53,7 @@ class _LiveFeedState extends State<LiveFeed> {
         children: <Widget>[
           CameraFeed(widget.cameras, setRecognitions),
           BoundingBox(
-            _recognitions == null ? [] : _recognitions,
+            _recognitions == null ? [] : _recognitions!,
             math.max(_imageHeight, _imageWidth),
             math.min(_imageHeight, _imageWidth),
             screen.height,

@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_tflite/flutter_tflite.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:tflite/tflite.dart';
 
 class StaticImage extends StatefulWidget {
   @override
@@ -9,10 +9,10 @@ class StaticImage extends StatefulWidget {
 }
 
 class _StaticImageState extends State<StaticImage> {
-  File _image;
-  List _recognitions;
-  bool _busy;
-  double _imageWidth, _imageHeight;
+  File? _image;
+  List? _recognitions;
+  bool _busy = true;
+  double? _imageWidth, _imageHeight;
 
   final picker = ImagePicker();
 
@@ -67,11 +67,11 @@ class _StaticImageState extends State<StaticImage> {
     if (_imageWidth == null || _imageHeight == null) return [];
 
     double factorX = screen.width;
-    double factorY = _imageHeight / _imageHeight * screen.width;
+    double factorY = _imageHeight! / _imageHeight! * screen.width;
 
     Color blue = Colors.blue;
 
-    return _recognitions.map((re) {
+    return _recognitions!.map((re) {
       return Container(
         child: Positioned(
             left: re["rect"]["x"] * factorX,
@@ -117,8 +117,9 @@ class _StaticImageState extends State<StaticImage> {
               ),
             )
           : // if not null then
-          Container(child: Image.file(_image)),
-    ));
+            Container(child: Image.file(_image!)),
+      ),
+    );
 
     stackChildren.addAll(renderBoxes(size));
 
@@ -161,28 +162,28 @@ class _StaticImageState extends State<StaticImage> {
 
   // gets image from camera and runs detectObject
   Future getImageFromCamera() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
 
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        detectObject(_image!);
       } else {
         print("No image Selected");
       }
     });
-    detectObject(_image);
   }
 
   // gets image from gallery and runs detectObject
   Future getImageFromGallery() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        detectObject(_image!);
       } else {
         print("No image Selected");
       }
     });
-    detectObject(_image);
   }
 }
