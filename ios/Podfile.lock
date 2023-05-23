@@ -1,0 +1,41 @@
+PODS:
+  - camera (0.0.1):
+    - Flutter
+  - Flutter (1.0.0)
+  - image_picker (0.0.1):
+    - Flutter
+  - TensorFlowLiteC (2.2.0)
+  - tflite (1.1.0):
+    - Flutter
+    - TensorFlowLiteC
+
+DEPENDENCIES:
+  - camera (from `.symlinks/plugins/camera/ios`)
+  - Flutter (from `Flutter`)
+  - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - tflite (from `.symlinks/plugins/tflite/ios`)
+
+SPEC REPOS:
+  trunk:
+    - TensorFlowLiteC
+
+EXTERNAL SOURCES:
+  camera:
+    :path: ".symlinks/plugins/camera/ios"
+  Flutter:
+    :path: Flutter
+  image_picker:
+    :path: ".symlinks/plugins/image_picker/ios"
+  tflite:
+    :path: ".symlinks/plugins/tflite/ios"
+
+SPEC CHECKSUMS:
+  camera: a0ca5080336f7af47b88436e5e26da3dee5568f0
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
+  TensorFlowLiteC: b3ab9e867b0b71052ca102a32a786555b330b02e
+  tflite: 61a908b8b12c100c9e3508788a407184819a9e1f
+
+PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
+
+COCOAPODS: 1.11.3
