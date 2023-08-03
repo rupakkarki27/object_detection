@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:object_detection/realtime/bounding_box.dart';
 import 'package:object_detection/realtime/camera.dart';
 import 'dart:math' as math;
-import 'package:flutter_tflite/flutter_tflite.dart';
+// import 'package:flutter_tflite/flutter_tflite.dart';
+import 'package:tflite/tflite.dart';
 
 class LiveFeed extends StatefulWidget {
   LiveFeed(this.cameras);

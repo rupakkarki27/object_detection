@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter_tflite/flutter_tflite.dart';
+// import 'package:flutter_tflite/flutter_tflite.dart';
 import 'dart:math' as math;
+
+import 'package:tflite/tflite.dart';
 
 typedef void Callback(List<dynamic> list, int h, int w);
 
@@ -36,7 +38,7 @@ class _CameraFeedState extends State<CameraFeed> {
     } else {
       controller = new CameraController(
         widget.cameras[0],
-        ResolutionPreset.high,
+        ResolutionPreset.max,
       );
       controller?.initialize().then((_) {
         if (!mounted) {
@@ -57,7 +59,7 @@ class _CameraFeedState extends State<CameraFeed> {
               imageMean: 127.5,
               imageStd: 127.5,
               numResultsPerClass: 1,
-              threshold: 0.60,
+              threshold: 0.70,
             ).then((recognitions) {
               /*
               When setRecognitions is called here, the parameters are being passed on to the parent widget as callback. i.e. to the LiveFeed class

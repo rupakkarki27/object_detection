@@ -29,8 +29,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.5
   image_picker: ^0.8.5+3
-  flutter_tflite: ^1.0.1
+  # flutter_tflite: ^1.0.1
   camera: ^0.10.5+1
+
+  tflite:
+    git:
+      url: https://github.com/geniusqwerty12/flutter_tflite.git
 
 dev_dependencies:
   flutter_test:
