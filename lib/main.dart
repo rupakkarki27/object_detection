@@ -23,14 +23,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
   aboutDialog() {
     showAboutDialog(
       context: context,
-      applicationName: "Object Detector App",
-      applicationLegalese: "By Rupak Karki",
-      applicationVersion: "1.0",
+      applicationName: "Paano Kaon Object Detection Prototype",
+      applicationLegalese: "By Rupak Karki and built on by KV laurea",
+      applicationVersion: "1.1",
       children: <Widget>[
-        Text("www.rupakkarki.com.np"),
+        Text("In Alpha Development"),
       ],
     );
   }
