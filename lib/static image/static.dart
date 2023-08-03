@@ -9,18 +9,31 @@ class StaticImage extends StatefulWidget {
 }
 
 class _StaticImageState extends State<StaticImage> {
-  File? _image;
-  List? _recognitions;
-  bool _busy = true;
-  double? _imageWidth, _imageHeight;
-
   final picker = ImagePicker();
+
+  bool _busy = true;
+  File? _image;
+  double? _imageWidth, _imageHeight;
+  List? _recognitions;
+
+  @override
+  void initState() {
+    super.initState();
+    _busy = true;
+    loadTfModel().then((val) {
+      {
+        setState(() {
+          _busy = false;
+        });
+      }
+    });
+  }
 
   // this function loads the model
   loadTfModel() async {
     await Tflite.loadModel(
-      model: "assets/models/ssd_mobilenet.tflite",
-      labels: "assets/models/labels.txt",
+      model: "assets/models/custom_model.tflite",
+      labels: "assets/models/custom_label.txt",
     );
   }
 
@@ -45,19 +58,6 @@ class _StaticImageState extends State<StaticImage> {
         })));
     setState(() {
       _recognitions = recognitions;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _busy = true;
-    loadTfModel().then((val) {
-      {
-        setState(() {
-          _busy = false;
-        });
-      }
     });
   }
 
@@ -97,6 +97,33 @@ class _StaticImageState extends State<StaticImage> {
                 : Container()),
       );
     }).toList();
+  }
+
+  // gets image from camera and runs detectObject
+  Future getImageFromCamera() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+        detectObject(_image!);
+      } else {
+        print("No image Selected");
+      }
+    });
+  }
+
+  // gets image from gallery and runs detectObject
+  Future getImageFromGallery() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+        detectObject(_image!);
+      } else {
+        print("No image Selected");
+      }
+    });
   }
 
   @override
@@ -158,32 +185,5 @@ class _StaticImageState extends State<StaticImage> {
         ),
       ),
     );
-  }
-
-  // gets image from camera and runs detectObject
-  Future getImageFromCamera() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.camera);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-        detectObject(_image!);
-      } else {
-        print("No image Selected");
-      }
-    });
-  }
-
-  // gets image from gallery and runs detectObject
-  Future getImageFromGallery() async {
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-        detectObject(_image!);
-      } else {
-        print("No image Selected");
-      }
-    });
   }
 }
