@@ -6,25 +6,36 @@ import 'dart:math' as math;
 import 'package:flutter_tflite/flutter_tflite.dart';
 
 class LiveFeed extends StatefulWidget {
-  final List<CameraDescription> cameras;
   LiveFeed(this.cameras);
+
+  final List<CameraDescription> cameras;
+
   @override
   _LiveFeedState createState() => _LiveFeedState();
 }
 
 class _LiveFeedState extends State<LiveFeed> {
-  List<dynamic>? _recognitions;
   int _imageHeight = 0;
   int _imageWidth = 0;
+  List<dynamic>? _recognitions;
+
+  @override
+  void initState() { 
+    super.initState();
+    loadTfModel();
+  }
+
   initCameras() async {
 
   }
+
   loadTfModel() async {
     await Tflite.loadModel(
       model: "assets/models/ssd_mobilenet.tflite",
       labels: "assets/models/labels.txt",
     );
   }
+
   /* 
   The set recognitions function assigns the values of recognitions, imageHeight and width to the variables defined here as callback
   */
@@ -34,12 +45,6 @@ class _LiveFeedState extends State<LiveFeed> {
       _imageHeight = imageHeight;
       _imageWidth = imageWidth;
     });
-  }
-
-  @override
-  void initState() { 
-    super.initState();
-    loadTfModel();
   }
 
   @override

@@ -23,6 +23,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  aboutDialog() {
+    showAboutDialog(
+      context: context,
+      applicationName: "Object Detector App",
+      applicationLegalese: "By Rupak Karki",
+      applicationVersion: "1.0",
+      children: <Widget>[
+        Text("www.rupakkarki.com.np"),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +66,7 @@ class _MyAppState extends State<MyApp> {
                   },
                 ),
               ),
+              
               ButtonTheme(
                 minWidth: 160,
                 child: ElevatedButton(
@@ -72,18 +85,6 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
-    );
-  }
-
-  aboutDialog() {
-    showAboutDialog(
-      context: context,
-      applicationName: "Object Detector App",
-      applicationLegalese: "By Rupak Karki",
-      applicationVersion: "1.0",
-      children: <Widget>[
-        Text("www.rupakkarki.com.np"),
-      ],
     );
   }
 }

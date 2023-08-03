@@ -6,11 +6,12 @@ import 'dart:math' as math;
 typedef void Callback(List<dynamic> list, int h, int w);
 
 class CameraFeed extends StatefulWidget {
-  final List<CameraDescription> cameras;
-  final Callback setRecognitions;
   // The cameraFeed Class takes the cameras list and the setRecognitions
   // function as argument
   CameraFeed(this.cameras, this.setRecognitions);
+
+  final List<CameraDescription> cameras;
+  final Callback setRecognitions;
 
   @override
   _CameraFeedState createState() => new _CameraFeedState();
@@ -19,6 +20,12 @@ class CameraFeed extends StatefulWidget {
 class _CameraFeedState extends State<CameraFeed> {
   CameraController? controller;
   bool isDetecting = false;
+
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
 
   @override
   void initState() {
@@ -64,12 +71,6 @@ class _CameraFeedState extends State<CameraFeed> {
         });
       });
     }
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
   }
 
   @override

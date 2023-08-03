@@ -2,12 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 class BoundingBox extends StatelessWidget {
-  final List<dynamic> results;
-  final int previewH;
-  final int previewW;
-  final double screenH;
-  final double screenW;
-
   BoundingBox(
     this.results,
     this.previewH,
@@ -15,6 +9,12 @@ class BoundingBox extends StatelessWidget {
     this.screenH,
     this.screenW,
   );
+
+  final int previewH;
+  final int previewW;
+  final List<dynamic> results;
+  final double screenH;
+  final double screenW;
 
   @override
   Widget build(BuildContext context) {
