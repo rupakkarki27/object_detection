@@ -59,7 +59,7 @@ class _CameraFeedState extends State<CameraFeed> {
               imageMean: 127.5,
               imageStd: 127.5,
               numResultsPerClass: 1,
-              threshold: 0.70,
+              threshold: 0.50,
             ).then((recognitions) {
               /*
               When setRecognitions is called here, the parameters are being passed on to the parent widget as callback. i.e. to the LiveFeed class
