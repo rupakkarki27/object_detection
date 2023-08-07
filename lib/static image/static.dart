@@ -157,6 +157,7 @@ class _StaticImageState extends State<StaticImage> {
       ));
     }
 
+//scaffold UI
     return Scaffold(
       appBar: AppBar(
         title: Text("Object Detector"),
