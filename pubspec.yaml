@@ -30,6 +30,7 @@ dependencies:
   cupertino_icons: ^1.0.5
   image_picker: ^0.8.5+3
   # flutter_tflite: ^1.0.1
+  #above dependecy is latest but not working with current model
   camera: ^0.10.5+1
 
   tflite:
